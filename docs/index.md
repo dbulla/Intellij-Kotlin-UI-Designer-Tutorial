@@ -62,7 +62,7 @@ In the src/main/kotlin directory, the file ["KotlinDemoUIOOOOld"](../src/main/ko
 standard GridBagLayout - it's in Kotlin, but it's all boilerplate, and almost no important code other than the listeners.
 
 <details markdown="1">
-  <summary>📋 Click this to expand the file contents
+  <summary>📋 **Click this to expand the file contents**
 <hr>
 </summary>
 
@@ -401,6 +401,7 @@ class KotlinDemoUiNew : DemoUiNew() {
 }
 ```
 
-Look how simple that is, compared to the manual code!  All we need to do is to add the listeners, wrap the generated form into a JFrame, and display it.  
+Look how simple that is, compared to the manual code!  All we need to do is import the Java class, add the listeners, 
+wrap the generated form into a JFrame, and then display it.  
 
 All of the layout, formatting, etc. is in the UI designer form, and you can concentrate on the business logic.
