@@ -60,6 +60,18 @@ The first, ["KotlinDemoUIOOOOld"](../src/main/kotlin/com/nurflugel/tutorial/Kotl
 GridBagLayout - it's all boilerplate, and almost no important code other than the listeners.
 
 <details>
+<summary>📋 Click to view python script</summary>
+
+```python
+def github_folding_test():
+    print("GitHub markdown renders this perfectly!")
+    return True
+```
+
+</details>
+
+
+<details>
   <summary>Click to expand file contents</summary>
 
   <!-- IMPORTANT: Leave an empty line above this comment -->
