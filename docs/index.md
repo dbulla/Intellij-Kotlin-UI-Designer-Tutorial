@@ -59,7 +59,7 @@ In the src/main/kotlin directory, there are 2 very (very) simple UIs done in Kot
 The first, ["KotlinDemoUIOOOOld"](../src/main/kotlin/com/nurflugel/tutorial/KotlinDemoUIOOOOld.kt) is the UI done with 
 GridBagLayout - it's all boilerplate, and almost no important code other than the listeners.
 
-<details>
+<details markdown="1">
 <summary>📋 Click to view python script</summary>
 
 ```python
@@ -71,7 +71,7 @@ def github_folding_test():
 </details>
 
 
-<details>
+<details markdown="1">
   <summary>Click to expand file contents</summary>
 
   <!-- IMPORTANT: Leave an empty line above this comment -->
