@@ -22,7 +22,7 @@ OK, there's a little more to it than that, but we'll get to that in the tutorial
 ### UI Designer Settings
 First, we need to configure IDEA's UI designer to work with Kotlin/Gradle projects:
 
-[ui designer editor settings](./assets/idea_ui_settings.png)
+![ui designer editor settings](./assets/idea_ui_settings.png)
 
 Note that rather than the default of having the UI designer inject code into the class files, we want it to explicitly generate the Java code in the class.
 
