@@ -55,7 +55,7 @@ Gradle already deals with mixed languages, so we don't need to do anything speci
 
 ### The App
 This is a super-simple UI - just a few components.  We want it to look like this:
-[UI sample app](./assets/sample_ui.png)
+![UI sample app](./assets/sample_ui.png)
 
 #### What does our original code look like?
 In the src/main/kotlin directory, the file ["KotlinDemoUIOOOOld"](../src/main/kotlin/com/nurflugel/tutorial/KotlinDemoUIOOOOld.kt) is the UI done with 
@@ -239,7 +239,7 @@ class KotlinDemoUIOOOOld: JFrame() {
 As you can see, GridBagLayout carries a lot of boilerplate!
 
 Now, I'll use the UI designer to create a form.  We're going to be using the Intellij Grid Layout:
-[form designer](./assets/form_designer.png)
+![form designer](./assets/form_designer.png)
 
 The form file for this is [DemoUiNew.form](../src/main/java/com/nurflugel/tutorial/DemoUiNew.form), and the Java file is
 [DemoUiNew.java](../src/main/java/com/nurflugel/tutorial/DemoUiNew.java).  Here's what that looks like:
