@@ -58,13 +58,13 @@ In the src/main/kotlin directory, there are 2 very (very) simple UIs done in Kot
 
 The first, ["KotlinDemoUIOOOOld"](../src/main/kotlin/com/nurflugel/tutorial/KotlinDemoUIOOOOld.kt) is the UI done with 
 GridBagLayout - it's all boilerplate, and almost no important code other than the listeners.
-
+  ```kotlin
 <details>
   <summary>Click to expand file contents</summary>
 
   <!-- IMPORTANT: Leave an empty line above this comment -->
 
-  ```kotlin
+
 package com.nurflugel.tutorial
 
 import java.awt.Dimension
@@ -228,9 +228,9 @@ class KotlinDemoUIOOOOld: JFrame() {
     }
 }
 
-  ```
+
 
 </details>
-
+  ```
 
 
