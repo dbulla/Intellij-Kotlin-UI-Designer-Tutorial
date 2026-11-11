@@ -43,8 +43,8 @@ plugins {
     kotlin("jvm") version "2.4.21"
 }
 dependencies {
-        implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
-        implementation("com.intellij:forms_rt:7.0.3")
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
+    implementation("com.intellij:forms_rt:7.0.3")
 }
 ```
 The important line here is adding the dependency to the JetBrains `forms_rt` library.
@@ -238,7 +238,9 @@ class KotlinDemoUIOOOOld: JFrame() {
 
 As you can see, GridBagLayout carries a lot of boilerplate!
 
-Now, I'll use the UI designer to create a form.  We're going to be using the Intellij Grid Layout:
+Now, I'll use the UI designer to create a form.  We're going to be using the Intellij's Grid Layout.  We right-click on the package, 
+and select "New... SwingUI Form", then add the components to the form:
+
 ![form designer](./assets/form_designer.png)
 
 The form file for this is [DemoUiNew.form](../src/main/java/com/nurflugel/tutorial/DemoUiNew.form), and the Java file is
@@ -349,7 +351,7 @@ public class DemoUiNew {
 
 </details>
 
-At first glance, this doesn't seem to be an improvement - but when the generated code is collapsed so you only see the necessary code - it's just the fields!  All you care about is this:
+At first glance, this doesn't seem to be much of an improvement - but when all the generated code is collapsed so you only see the necessary code - it's just the fields!  All you really care about is this:
 
 ```java
 package com.nurflugel.tutorial;
@@ -363,10 +365,10 @@ public class DemoUiNew {
 }
 ```
 
-Note that the fields are all protected - since we'll be extending this class in Kotlin, they can't be private.
+Note that the fields are all protected - since we'll be extending this class in Kotlin, they can't be private (which is the default).
 
 #### The Kotlin code
-Here's the Kotlin code:
+Now that we've got the Java UI code all set up, here's the Kotlin code:
 ```kotlin
 package com.nurflugel.tutorial
 
@@ -401,7 +403,7 @@ class KotlinDemoUiNew : DemoUiNew() {
 }
 ```
 
-Look how simple that is, compared to the manual code!  All we need to do is import the Java class, add the listeners, 
+Look how simple that is, compared to the manual code!  All we need to do is import the generated Java class, add the listeners, 
 wrap the generated form into a JFrame, and then display it.  
 
 All of the layout, formatting, etc. is in the UI designer form, and you can concentrate on the business logic.
