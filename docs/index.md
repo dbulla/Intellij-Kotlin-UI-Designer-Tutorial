@@ -7,18 +7,18 @@ The Java-based UI designer is a powerful tool that allows developers to create u
 their applications without having to write any code. It provides a visual interface for 
 designing layouts, adding components, and configuring their properties.
 
-In this tutorial, we will walk you through the process of setting up the UI designer in a 
-Kotlin/Gradle development environment and creating a simple user interface.
-
 Normally, the JetBrains UI Designer only supports Java, and if you're a Kotlin fan like myself, that's limiting.  However,
 the workaround is really pretty simple - since Gradle can host both Java and Kotlin in the same project, we let IDEA create the UI
 in the Java source directory, and then create a Kotlin superclass in the Kotlin source directory.  Presto, chango - 
 you're all set!
 
+In this tutorial, we will walk you through the process of setting up the UI designer in a
+Kotlin/Gradle development environment and creating a simple user interface.
+
 OK, there's a little more to it than that, but we'll get to that in the tutorial.
 
 ## Why?  What's the point?
-I write UI apps, and I like the Kotlin language.  I also like the JetBrains UI Designer - but it doesn't support Kotlin.
+I write UI desktop apps, and I like the Kotlin language.  I also like the JetBrains UI Designer - but it doesn't support Kotlin.
 By using that to create my UI in Java, I can then inherit the Java UI classes in my Kotlin code.  This gives a really nice, 
 clean separation of concerns between the UI and the business logic.  The 
 Java code has all the visual layout, and the Kotlin code has all the business logic, without any of the UI cruft.
@@ -31,11 +31,12 @@ First, we need to configure IDEA's UI designer to work with Kotlin/Gradle projec
 ![ui designer editor settings](./assets/idea_ui_settings.png)
 
 Note that rather than the default of having the UI designer inject code into the class files, 
-we want it to explicitly "Generate Java in the source code on save".
+we want it to explicitly "Generate Java in the source code on save".  That way any changes you make 
+can be handled by the standard Gradle scripts without any need for Gradle to know about the UI designer code.
 
 ### Gradle
 
-To configure Gradle to work with Kotlin and the JetBrains UI Designer, we need to add the following dependencies to our `build.gradle.kts` file:
+To add the dependencies for the UI Designer, we need to add the following dependency to our `build.gradle.kts` file:
 
 ```kotlin
 plugins {
@@ -43,22 +44,24 @@ plugins {
     kotlin("jvm") version "2.4.21"
 }
 dependencies {
-    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
     implementation("com.intellij:forms_rt:7.0.3")
 }
 ```
-The important line here is adding the dependency to the JetBrains `forms_rt` library.
+The important line here is adding the dependency to the JetBrains **`forms_rt`** library.
 
-Gradle already deals with mixed languages, so we don't need to do anything special to support Kotlin and Java in the same project.
+Gradle already knows how to deal with mixed languages, so we don't need to do anything special to 
+support Kotlin and Java in the same project - it just works!.
 
-### Code
+### The Code
 
-### The App
+#### The App
 This is a super-simple UI - just a few components.  We want it to look like this:
 ![UI sample app](./assets/sample_ui.png)
 
-#### What does our original code look like?
-In the src/main/kotlin directory, the file ["KotlinDemoUIOOOOld"](../src/main/kotlin/com/nurflugel/tutorial/KotlinDemoUIOOOOld.kt) is the UI done with 
+##### What does our original code look like?
+Before we dive into the UI designer code, what does it look like without it?  
+
+In the src/main/kotlin directory, the file ["KotlinDemoUIOOOOld"](https://github.com/dbulla/Intellij-Kotlin-UI-Designer-Tutorial/blob/main/src/main/kotlin/com/nurflugel/tutorial/KotlinDemoUIOOOOld.kt) is the UI done with 
 standard GridBagLayout - it's in Kotlin, but it's all boilerplate, and almost no important code other than the listeners.
 
 <details markdown="1">
@@ -236,15 +239,17 @@ class KotlinDemoUIOOOOld: JFrame() {
 
 </details>
 
-As you can see, GridBagLayout carries a lot of boilerplate!
+As you can see, GridBagLayout carries a *lot* of boilerplate!
+
+##### The UI Designer
 
 Now, I'll use the UI designer to create a form.  We're going to be using the Intellij's Grid Layout.  We right-click on the package, 
 and select "New... SwingUI Form", then add the components to the form:
 
 ![form designer](./assets/form_designer.png)
 
-The form file for this is [DemoUiNew.form](../src/main/java/com/nurflugel/tutorial/DemoUiNew.form), and the Java file is
-[DemoUiNew.java](../src/main/java/com/nurflugel/tutorial/DemoUiNew.java).  Here's what that looks like:
+The form file for this is [DemoUiNew.form](https://github.com/dbulla/Intellij-Kotlin-UI-Designer-Tutorial/blob/main/src/main/java/com/nurflugel/tutorial/DemoUiNew.form), and the Java file is
+[DemoUiNew.java](https://github.com/dbulla/Intellij-Kotlin-UI-Designer-Tutorial/blob/main/src/main/java/com/nurflugel/tutorial/DemoUiNew.java).  Here's what that looks like:
 
 <details markdown="1">
 
@@ -351,7 +356,8 @@ public class DemoUiNew {
 
 </details>
 
-At first glance, this doesn't seem to be much of an improvement - but when all the generated code is collapsed so you only see the necessary code - it's just the fields!  All you really care about is this:
+At first glance, this doesn't seem to be much of an improvement - but when all the generated code is collapsed so you only see the necessary code - 
+it's just the fields!  All you really care about is this [DemoUiNew.java](https://github.com/dbulla/Intellij-Kotlin-UI-Designer-Tutorial/blob/main/src/main/java/com/nurflugel/tutorial/DemoUiNew.java):
 
 ```java
 package com.nurflugel.tutorial;
@@ -368,7 +374,7 @@ public class DemoUiNew {
 Note that the fields are all protected - since we'll be extending this class in Kotlin, they can't be private (which is the default).
 
 #### The Kotlin code
-Now that we've got the Java UI code all set up, here's the Kotlin code:
+Now that we've got the Java UI code all set up, here's the Kotlin code [KotlinDemoUiNew.kt](https://github.com/dbulla/Intellij-Kotlin-UI-Designer-Tutorial/blob/main/src/main/kotlin/com/nurflugel/tutorial/KotlinDemoUiNew.kt):
 ```kotlin
 package com.nurflugel.tutorial
 
