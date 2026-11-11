@@ -36,7 +36,7 @@ can be handled by the standard Gradle scripts without any need for Gradle to kno
 
 ### Gradle
 
-To add the dependencies for the UI Designer, we need to add the following dependency to our `build.gradle.kts` file:
+To add the dependencies for the UI Designer, we need to add the following dependency to our [`build.gradle.kts`](https://github.com/dbulla/Intellij-Kotlin-UI-Designer-Tutorial/blob/main/build.gradle.kts) file:
 
 ```kotlin
 plugins {
