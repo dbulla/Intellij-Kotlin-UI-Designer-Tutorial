@@ -1,1 +1,1 @@
-Go to [docs/tutorial.md](docs/tutorial.md)
+Go to [the Github Pages site to read the tutorial!](https://dbulla.github.io/Intellij-Kotlin-UI-Designer-Tutorial/)

@@ -1,7 +1,7 @@
 # Intellij-Kotlin-UI-Designer-Tutorial
 
 ## Overview
-This is a tutorial on how to use JetBrain's UI designer in a Kotlin/Gradle dev environment.
+This is a tutorial on how to use JetBrains' UI designer in a Kotlin/Gradle dev environment.
 
 The Java-based UI designer is a powerful tool that allows developers to create user interfaces for 
 their applications without having to write any code. It provides a visual interface for 
