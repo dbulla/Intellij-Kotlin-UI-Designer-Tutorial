@@ -353,8 +353,8 @@ public class DemoUiIntellijUiDesigner {
 
 </details>
 
-At first glance, this doesn't seem to be much of an improvement - but when all the generated code is collapsed so you only see the *necessary* code - 
-it's just the fields!  All you really care about is this [DemoUiNew.java](https://github.com/dbulla/Intellij-Kotlin-UI-Designer-Tutorial/blob/main/src/main/java/com/nurflugel/tutorial/DemoUiNew.java):
+At first glance, this doesn't seem to be much of an improvement - but everything past the field declarations is generated code, and is normally is collapsed so you only see the *necessary* code - 
+ just the fields.  All you really care about is this [DemoUiIntellijUiDesigner.java](https://github.com/dbulla/Intellij-Kotlin-UI-Designer-Tutorial/blob/main/src/main/java/com/nurflugel/tutorial/DemoUiIntellijUiDesigner.java):
 
 ```java
 package com.nurflugel.tutorial;
