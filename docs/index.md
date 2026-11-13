@@ -65,8 +65,7 @@ In the src/main/kotlin directory, the file ["KotlinGridBagDemoUI"](https://githu
 standard GridBagLayout - it's in Kotlin, but it's all boilerplate, and almost no important code other than the listeners.
 
 <details markdown="1">
-  <summary>📋 **Click this to expand the file contents**
-<hr>
+  <summary><bold>📋 Click this to expand the file contents</bold>
 </summary>
 
   <!-- IMPORTANT: Leave an empty line above this comment -->
@@ -78,22 +77,14 @@ import java.awt.Dimension
 import java.awt.Font
 import java.awt.Font.BOLD
 import java.awt.GridBagConstraints
-import java.awt.GridBagConstraints.BOTH
-import java.awt.GridBagConstraints.EAST
-import java.awt.GridBagConstraints.HORIZONTAL
-import java.awt.GridBagConstraints.VERTICAL
-import java.awt.GridBagConstraints.WEST
+import java.awt.GridBagConstraints.*
 import java.awt.GridBagLayout
-import javax.swing.JButton
-import javax.swing.JFrame
-import javax.swing.JLabel
-import javax.swing.JPanel
-import javax.swing.JTextField
-import javax.swing.SwingUtilities
+import javax.swing.*
 import javax.swing.plaf.FontUIResource
 import javax.swing.text.StyleContext
+import kotlin.system.exitProcess
 
-class KotlinGridBagDemoUI: JFrame() {
+class KotlinGridBagDemoUI : JFrame() {
     private var demoLabel: JLabel
     private var firstTextField: JTextField
     private var secondTextField: JTextField
@@ -104,7 +95,7 @@ class KotlinGridBagDemoUI: JFrame() {
         @JvmStatic
         fun main(args: Array<String>) {
             SwingUtilities.invokeLater {
-                val frame = KotlinDemoUIOOOOld()
+                val frame = KotlinGridBagDemoUI()
                 frame.pack()
                 frame.isVisible = true
             }
@@ -113,13 +104,11 @@ class KotlinGridBagDemoUI: JFrame() {
 
     init {
         val mainPanel = JPanel()
-
         mainPanel.setLayout(GridBagLayout())
         demoLabel = JLabel()
         val demoLabelFont = createFont(null, BOLD, 28, demoLabel.getFont())
         if (demoLabelFont != null) demoLabel.setFont(demoLabelFont)
         demoLabel.setText("Demo UI Application")
-
         var gbc = GridBagConstraints()
         gbc.gridx = 1
         gbc.gridy = 0
@@ -210,10 +199,15 @@ class KotlinGridBagDemoUI: JFrame() {
 
         contentPane = mainPanel
         defaultCloseOperation = EXIT_ON_CLOSE
+
+        okButton.addActionListener {
+            JOptionPane.showMessageDialog(this, "You typed ${(firstTextField.text + "  " + secondTextField.text).trim().ifEmpty { "nothing" }} then clicked OK!")
+        }
+        cancelButton.addActionListener { exitProcess(0) }
     }
 
     @Suppress("SameParameterValue")
-    private fun createFont(fontName: String?, style: Int, size: Int, currentFont: Font?): Font? {
+    fun createFont(fontName: String?, style: Int, size: Int, currentFont: Font?): Font? {
         if (currentFont == null) return null
         val resultName: String = if (fontName == null) {
             currentFont.getName()
@@ -254,7 +248,7 @@ we really don't care what's in there, as it's never meant to be modified by huma
 
 <details markdown="1">
 
-  <summary>📋 Click this to expand the file contents </summary>
+<bold><summary>📋 Click this to expand the file contents </summary></bold>
 
 ```java
 package com.nurflugel.tutorial;
@@ -270,7 +264,7 @@ import java.awt.*;
 import java.util.Locale;
 
 public class DemoUiIntellijUiDesigner {
-    protected JPanel panel1;
+    protected JPanel mainPanel;
     protected JTextField firstTextField;
     protected JTextField secondTextField;
     protected JButton okButton;
@@ -357,14 +351,14 @@ public class DemoUiIntellijUiDesigner {
 
 </details>
 
-At first glance, this doesn't seem to be much of an improvement - but when all the generated code is collapsed so you only see the necessary code - 
+At first glance, this doesn't seem to be much of an improvement - but when all the generated code is collapsed so you only see the *necessary* code - 
 it's just the fields!  All you really care about is this [DemoUiNew.java](https://github.com/dbulla/Intellij-Kotlin-UI-Designer-Tutorial/blob/main/src/main/java/com/nurflugel/tutorial/DemoUiNew.java):
 
 ```java
 package com.nurflugel.tutorial;
 
 public class DemoUiIntellijUiDesigner {
-    protected JPanel panel1;
+    protected JPanel mainPanel;
     protected JTextField firstTextField;
     protected JTextField secondTextField;
     protected JButton okButton;
@@ -380,21 +374,24 @@ Now that we've got the Java UI code all set up, here's the Kotlin code [KotlinDe
 package com.nurflugel.tutorial
 
 import javax.swing.JFrame
+import javax.swing.JOptionPane
 import javax.swing.SwingUtilities
 import kotlin.system.exitProcess
 
 class KotlinDemoUiIntellijUiDesigner : DemoUiIntellijUiDesigner() {
-    private var frame: JFrame = JFrame()
+    private var theFrame: JFrame = JFrame()
 
     init {
         addListeners()
-        frame.contentPane = panel1
-        frame.pack()
-        frame.isVisible = true
+        theFrame.contentPane = mainPanel
+        theFrame.pack()
+        theFrame.isVisible = true
     }
 
     private fun addListeners() {
-        okButton.addActionListener { println("Doing something on OK pressed") }
+        okButton.addActionListener {
+            JOptionPane.showMessageDialog(theFrame, "You typed ${(firstTextField.text + " " + secondTextField.text).trim().ifEmpty { "nothing" }} then clicked OK!")
+        }
         cancelButton.addActionListener { exitProcess(0) }
     }
 
@@ -402,11 +399,10 @@ class KotlinDemoUiIntellijUiDesigner : DemoUiIntellijUiDesigner() {
         @JvmStatic
         fun main(args: Array<String>) {
             SwingUtilities.invokeLater {
-                val frame = KotlinDemoUiIntellijUiDesigner()
+                KotlinDemoUiIntellijUiDesigner()
             }
         }
     }
-
 }
 ```
 

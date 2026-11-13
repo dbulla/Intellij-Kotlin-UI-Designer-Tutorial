@@ -10,7 +10,7 @@ class KotlinDemoUiIntellijUiDesigner : DemoUiIntellijUiDesigner() {
 
     init {
         addListeners()
-        theFrame.contentPane = panel1
+        theFrame.contentPane = mainPanel
         theFrame.pack()
         theFrame.isVisible = true
     }
@@ -30,5 +30,4 @@ class KotlinDemoUiIntellijUiDesigner : DemoUiIntellijUiDesigner() {
             }
         }
     }
-
 }
