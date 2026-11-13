@@ -65,6 +65,7 @@ In the src/main/kotlin directory, the file ["KotlinGridBagDemoUI"](https://githu
 standard GridBagLayout - it's in Kotlin, but it's all boilerplate, and almost no important code other than the listeners.
 
 <details markdown="1">
+
   <summary><bold>📋 Click this to expand the file contents</bold>
 </summary>
 
@@ -90,17 +91,6 @@ class KotlinGridBagDemoUI : JFrame() {
     private var secondTextField: JTextField
     private var okButton: JButton
     private var cancelButton: JButton
-
-    companion object {
-        @JvmStatic
-        fun main(args: Array<String>) {
-            SwingUtilities.invokeLater {
-                val frame = KotlinGridBagDemoUI()
-                frame.pack()
-                frame.isVisible = true
-            }
-        }
-    }
 
     init {
         val mainPanel = JPanel()
@@ -227,6 +217,17 @@ class KotlinGridBagDemoUI : JFrame() {
         return fontWithFallback as? FontUIResource
                 ?: FontUIResource(fontWithFallback)
     }
+
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            SwingUtilities.invokeLater {
+                val frame = KotlinGridBagDemoUI()
+                frame.pack()
+                frame.isVisible = true
+            }
+        }
+    }
 }
 
 ```
@@ -246,9 +247,10 @@ The form file for this is [DemoUiIntellijUiDesigner.form](https://github.com/dbu
 we really don't care what's in there, as it's never meant to be modified by humans.  However, the Java file is - 
 [DemoUiIntellijUiDesigner.java](https://github.com/dbulla/Intellij-Kotlin-UI-Designer-Tutorial/blob/main/src/main/java/com/nurflugel/tutorial/DemoUiNew.java).  Here's what that looks like:
 
+<!--suppress HtmlUnknownAttribute -->
 <details markdown="1">
 
-<bold><summary>📋 Click this to expand the file contents </summary></bold>
+<summary>📋 Click this to expand the file contents </summary>
 
 ```java
 package com.nurflugel.tutorial;

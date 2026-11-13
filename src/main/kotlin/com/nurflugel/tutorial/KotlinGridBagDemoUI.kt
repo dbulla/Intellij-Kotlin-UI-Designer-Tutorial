@@ -18,17 +18,6 @@ class KotlinGridBagDemoUI : JFrame() {
     private var okButton: JButton
     private var cancelButton: JButton
 
-    companion object {
-        @JvmStatic
-        fun main(args: Array<String>) {
-            SwingUtilities.invokeLater {
-                val frame = KotlinGridBagDemoUI()
-                frame.pack()
-                frame.isVisible = true
-            }
-        }
-    }
-
     init {
         val mainPanel = JPanel()
         mainPanel.setLayout(GridBagLayout())
@@ -153,6 +142,17 @@ class KotlinGridBagDemoUI : JFrame() {
         val fontWithFallback = if (isMac) Font(font.family, font.getStyle(), font.getSize()) else StyleContext().getFont(font.family, font.getStyle(), font.getSize())
         return fontWithFallback as? FontUIResource
                 ?: FontUIResource(fontWithFallback)
+    }
+
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            SwingUtilities.invokeLater {
+                val frame = KotlinGridBagDemoUI()
+                frame.pack()
+                frame.isVisible = true
+            }
+        }
     }
 }
 
