@@ -10,7 +10,7 @@ import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.util.Locale;
 
-public class DemoUiNew {
+public class DemoUiIntellijUiDesigner {
     protected JPanel panel1;
     protected JTextField firstTextField;
     protected JTextField secondTextField;

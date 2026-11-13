@@ -1,7 +1,7 @@
 # Intellij-Kotlin-UI-Designer-Tutorial
 
 ## Overview
-This is a tutorial on how to use JetBrains' UI designer in a Kotlin/Gradle dev environment.
+This is a tutorial on how to use JetBrains' Java-based UI designer in a Kotlin/Gradle dev environment.
 
 The Java-based UI designer is a powerful tool that allows developers to create user interfaces for 
 their applications without having to write any code. It provides a visual interface for 
@@ -18,7 +18,7 @@ Kotlin/Gradle development environment and creating a simple user interface.
 OK, there's a little more to it than that, but we'll get to that in the tutorial.
 
 ## Why?  What's the point?
-I write UI desktop apps, and I like the Kotlin language.  I also like the JetBrains UI Designer - but it doesn't support Kotlin.
+I write UI desktop apps, and I like using the Kotlin language.  I *also* like the JetBrains UI Designer - but it doesn't support Kotlin.
 By using that to create my UI in Java, I can then inherit the Java UI classes in my Kotlin code.  This gives a really nice, 
 clean separation of concerns between the UI and the business logic.  The 
 Java code has all the visual layout, and the Kotlin code has all the business logic, without any of the UI cruft.
@@ -26,7 +26,7 @@ Java code has all the visual layout, and the Kotlin code has all the business lo
 ## Tutorial
 
 ### UI Designer Settings
-First, we need to configure IDEA's UI designer to work with Kotlin/Gradle projects - here's the setting:
+First, we need to configure IDEA's UI designer to work with Kotlin/Gradle projects - here's the project setting (note that it's per *project*, not a global setting:
 
 ![ui designer editor settings](./assets/idea_ui_settings.png)
 
@@ -61,7 +61,7 @@ This is a super-simple UI - just a few components.  We want it to look like this
 ##### What does our original code look like?
 Before we dive into the UI designer code, what does it look like without it?  
 
-In the src/main/kotlin directory, the file ["KotlinDemoUIOOOOld"](https://github.com/dbulla/Intellij-Kotlin-UI-Designer-Tutorial/blob/main/src/main/kotlin/com/nurflugel/tutorial/KotlinDemoUIOOOOld.kt) is the UI done with 
+In the src/main/kotlin directory, the file ["KotlinGridBagDemoUI"](https://github.com/dbulla/Intellij-Kotlin-UI-Designer-Tutorial/blob/main/src/main/kotlin/com/nurflugel/tutorial/KotlinGridBagDemoUI.kt) is the UI done with 
 standard GridBagLayout - it's in Kotlin, but it's all boilerplate, and almost no important code other than the listeners.
 
 <details markdown="1">
@@ -93,7 +93,7 @@ import javax.swing.SwingUtilities
 import javax.swing.plaf.FontUIResource
 import javax.swing.text.StyleContext
 
-class KotlinDemoUIOOOOld: JFrame() {
+class KotlinGridBagDemoUI: JFrame() {
     private var demoLabel: JLabel
     private var firstTextField: JTextField
     private var secondTextField: JTextField
@@ -248,8 +248,9 @@ and select "New... SwingUI Form", then add the components to the form:
 
 ![form designer](./assets/form_designer.png)
 
-The form file for this is [DemoUiNew.form](https://github.com/dbulla/Intellij-Kotlin-UI-Designer-Tutorial/blob/main/src/main/java/com/nurflugel/tutorial/DemoUiNew.form), and the Java file is
-[DemoUiNew.java](https://github.com/dbulla/Intellij-Kotlin-UI-Designer-Tutorial/blob/main/src/main/java/com/nurflugel/tutorial/DemoUiNew.java).  Here's what that looks like:
+The form file for this is [DemoUiIntellijUiDesigner.form](https://github.com/dbulla/Intellij-Kotlin-UI-Designer-Tutorial/blob/main/src/main/java/com/nurflugel/tutorial/DemoUiIntellijUiDesigner.form) - 
+we really don't care what's in there, as it's never meant to be modified by humans.  However, the Java file is - 
+[DemoUiIntellijUiDesigner.java](https://github.com/dbulla/Intellij-Kotlin-UI-Designer-Tutorial/blob/main/src/main/java/com/nurflugel/tutorial/DemoUiNew.java).  Here's what that looks like:
 
 <details markdown="1">
 
@@ -268,7 +269,7 @@ import javax.swing.text.StyleContext;
 import java.awt.*;
 import java.util.Locale;
 
-public class DemoUiNew {
+public class DemoUiIntellijUiDesigner {
     protected JPanel panel1;
     protected JTextField firstTextField;
     protected JTextField secondTextField;
@@ -362,7 +363,7 @@ it's just the fields!  All you really care about is this [DemoUiNew.java](https:
 ```java
 package com.nurflugel.tutorial;
 
-public class DemoUiNew {
+public class DemoUiIntellijUiDesigner {
     protected JPanel panel1;
     protected JTextField firstTextField;
     protected JTextField secondTextField;
@@ -374,7 +375,7 @@ public class DemoUiNew {
 Note that the fields are all protected - since we'll be extending this class in Kotlin, they can't be private (which is the default).
 
 #### The Kotlin code
-Now that we've got the Java UI code all set up, here's the Kotlin code [KotlinDemoUiNew.kt](https://github.com/dbulla/Intellij-Kotlin-UI-Designer-Tutorial/blob/main/src/main/kotlin/com/nurflugel/tutorial/KotlinDemoUiNew.kt):
+Now that we've got the Java UI code all set up, here's the Kotlin code [KotlinDemoUiIntellijUiDesigner.kt](https://github.com/dbulla/Intellij-Kotlin-UI-Designer-Tutorial/blob/main/src/main/kotlin/com/nurflugel/tutorial/KotlinDemoUiIntellijUiDesigner.kt):
 ```kotlin
 package com.nurflugel.tutorial
 
@@ -382,7 +383,7 @@ import javax.swing.JFrame
 import javax.swing.SwingUtilities
 import kotlin.system.exitProcess
 
-class KotlinDemoUiNew : DemoUiNew() {
+class KotlinDemoUiIntellijUiDesigner : DemoUiIntellijUiDesigner() {
     private var frame: JFrame = JFrame()
 
     init {
@@ -401,7 +402,7 @@ class KotlinDemoUiNew : DemoUiNew() {
         @JvmStatic
         fun main(args: Array<String>) {
             SwingUtilities.invokeLater {
-                val frame = KotlinDemoUiNew()
+                val frame = KotlinDemoUiIntellijUiDesigner()
             }
         }
     }

@@ -4,22 +4,14 @@ import java.awt.Dimension
 import java.awt.Font
 import java.awt.Font.BOLD
 import java.awt.GridBagConstraints
-import java.awt.GridBagConstraints.BOTH
-import java.awt.GridBagConstraints.EAST
-import java.awt.GridBagConstraints.HORIZONTAL
-import java.awt.GridBagConstraints.VERTICAL
-import java.awt.GridBagConstraints.WEST
+import java.awt.GridBagConstraints.*
 import java.awt.GridBagLayout
-import javax.swing.JButton
-import javax.swing.JFrame
-import javax.swing.JLabel
-import javax.swing.JPanel
-import javax.swing.JTextField
-import javax.swing.SwingUtilities
+import javax.swing.*
 import javax.swing.plaf.FontUIResource
 import javax.swing.text.StyleContext
+import kotlin.system.exitProcess
 
-class KotlinDemoUIOOOOld: JFrame() {
+class KotlinGridBagDemoUI : JFrame() {
     private var demoLabel: JLabel
     private var firstTextField: JTextField
     private var secondTextField: JTextField
@@ -30,7 +22,7 @@ class KotlinDemoUIOOOOld: JFrame() {
         @JvmStatic
         fun main(args: Array<String>) {
             SwingUtilities.invokeLater {
-                val frame = KotlinDemoUIOOOOld()
+                val frame = KotlinGridBagDemoUI()
                 frame.pack()
                 frame.isVisible = true
             }
@@ -39,13 +31,11 @@ class KotlinDemoUIOOOOld: JFrame() {
 
     init {
         val mainPanel = JPanel()
-
         mainPanel.setLayout(GridBagLayout())
         demoLabel = JLabel()
         val demoLabelFont = createFont(null, BOLD, 28, demoLabel.getFont())
         if (demoLabelFont != null) demoLabel.setFont(demoLabelFont)
         demoLabel.setText("Demo UI Application")
-
         var gbc = GridBagConstraints()
         gbc.gridx = 1
         gbc.gridy = 0
@@ -136,12 +126,15 @@ class KotlinDemoUIOOOOld: JFrame() {
 
         contentPane = mainPanel
         defaultCloseOperation = EXIT_ON_CLOSE
+
+        okButton.addActionListener {
+            JOptionPane.showMessageDialog(this, "You typed ${(firstTextField.text + "  " + secondTextField.text).trim().ifEmpty { "nothing" }} then clicked OK!")
+        }
+        cancelButton.addActionListener { exitProcess(0) }
     }
 
-
-
     @Suppress("SameParameterValue")
-    private fun createFont(fontName: String?, style: Int, size: Int, currentFont: Font?): Font? {
+    fun createFont(fontName: String?, style: Int, size: Int, currentFont: Font?): Font? {
         if (currentFont == null) return null
         val resultName: String = if (fontName == null) {
             currentFont.getName()
@@ -162,3 +155,4 @@ class KotlinDemoUIOOOOld: JFrame() {
                 ?: FontUIResource(fontWithFallback)
     }
 }
+

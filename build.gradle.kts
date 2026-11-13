@@ -1,7 +1,7 @@
 import org.gradle.internal.jvm.Jvm
 
 val kotlinVersion = "2.4.21"
-val JAVA_VERSION = 25
+val javaVersion = 25
 
 plugins {
     // Application plugin to add support for building a CLI application in Java.
@@ -12,13 +12,6 @@ plugins {
 repositories {
     mavenCentral()
 }
-
-//configurations.named("kotlinAbiValidationCompatClasspath") {
-//    resolutionStrategy {
-//        // Force the configuration to match your active Kotlin version
-//        force("org.jetbrains.kotlin:kotlin-build-tools-impl:$kotlinVersion")
-//    }
-//}
 
 dependencies {
     // Align versions of all Kotlin components
@@ -34,7 +27,7 @@ application {
 }
 
 kotlin {
-    jvmToolchain(JAVA_VERSION)
+    jvmToolchain(javaVersion)
 }
 
 println(
